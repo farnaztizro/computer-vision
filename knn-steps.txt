@@ -1,0 +1,5 @@
+1. important packages
+2. parse arguments
+3. grab the file paths of the images in our datasets(step #1 gather our datasets)
+4. building our training and testing splits(step #2 split the dataset)
+5. train and evaluate a k-NN classifier(step #3 , #4)
