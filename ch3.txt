@@ -1,0 +1,6 @@
+Represented in the RGB color space by three channels, each channel in the range [0,255]. A
+given pixel in an RGB image is a list of three integers: one value for Red, second for Green,
+and a final value for Blue.
+
+Programmatically defined as a 3D NumPy multidimensional arrays with a width, height, and
+depth.
