@@ -39,3 +39,38 @@ X =np.c_[X, np.ones((X.shape[0]))]
 # partition the data into training and testing splits
 (trainX, testX, trainY, testY) = train_test_split(X, y, test_size=0.5, random_state=42)
 
+#  handles randomly initializing our weight matrix 
+print("[INFO] training...")
+# sotune xo mirize tu satre in = 3x1
+W = np.random.randn(X.shape[1], 1)
+# print(X) = 3072x3
+# initializes a list to keep track of our losses after each epoch
+losses = []
+
+# actual training and gradient descent
+
+# start looping over the supplied number of --epochs
+for epoch in np.arange(0, args["epochs"]):
+    # giving us our predictions on the dataset
+    # takes the dot product between our entire training set trainX and our weight matrix
+    preds = sigmoid_activation(trainX.dot(W))
+
+    # now we have our prediction, we need to determine the error which is the 
+    # difference between our predictions and the true value
+    # trainY = real value
+    error = preds - trainY
+    # compute the least squares error over our predictions
+    # zigma formul
+    loss = np.sum(error ** 2)
+    losses.append(loss)
+
+    # Now that we have our error, we can compute the
+    # gradient and then use it to update our weight matrix W
+
+    gradient = trainX.T.dot(error)
+
+    # ta vaqti gradient b chizi k mikhaim berese bayad - bezarim ta berese b oni k mikhaim
+    W += -args["alpha"] * gradient
+
+    if epoch == 0 or (epoch + 1) % 5 == 0:
+        print("[INFO] epoch={}, loss={:.7f}".format(int(epoch + 1), loss))
