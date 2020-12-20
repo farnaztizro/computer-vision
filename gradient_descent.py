@@ -74,3 +74,31 @@ for epoch in np.arange(0, args["epochs"]):
 
     if epoch == 0 or (epoch + 1) % 5 == 0:
         print("[INFO] epoch={}, loss={:.7f}".format(int(epoch + 1), loss))
+
+
+# classifier is now trained
+# The next step is evaluation
+
+print("[INFO] evaluating...")
+preds = predict (trainX, W)
+print(classification_report(testY, preds))
+
+# handles plotting
+# 1. visualize the dataset we are trying to classify
+# 2. our loss over time
+
+plt.style.use("ggplot")
+# chanta chiz ru y nemudar(1bodi bashe nemikhad)
+plt.figure()
+plt.title("Data")
+# s=marker size
+# c=vorudiamun ba rangaye rgb
+plt.scatter(testX[:, 0], testX[:, 1], marker="o", c=testY, s=30)
+
+plt.style.use("ggplot")
+plt.figure()
+plt.plot(np.arange(0, args["epochs"]), losses)
+plt.title("Training Loss")
+plt.xlabel("Epoch #")
+plt.ylabel("Loss")
+plt.show()
