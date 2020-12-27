@@ -21,7 +21,7 @@ def predict(x, W):
 ap = argparse.ArgumentParser()
 ap.add_argument("-e", "--epochs", type=float, default=100, help="# of epochs")   
 ap.add_argument("-a", "--alpha", type=float, default=0.01, help="learning rate")
-args = vars(ap.parse_args)
+args = vars(ap.parse_args())
 
 # generate some data to classify
 # n_sample: datapoints
