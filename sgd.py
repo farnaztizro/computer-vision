@@ -50,7 +50,7 @@ W = np.random.randn(X.shape[1], 1)
 losses = []
 
 # loop over the desired number of epochs
-for epoch in np.arrange(0, args["epochs"]):
+for epoch in np.arange(0, args["epochs"]):
     # initialize the total loss for the epoch
     epochLoss = []
 
