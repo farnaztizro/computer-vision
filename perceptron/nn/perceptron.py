@@ -34,4 +34,18 @@ class perceptron:
                     # scaling this step by our learning rate alpha
                     self.W += -self.alpha * error * x
 
+    # predict the class labels for a given set of input data(input data must be classified)
+    def predict(self, X, addBias=True):
+        # ensure our input is a matrix
+        X = np.atleast_2d(X)
+
+        # check to see if the bias column should be added
+        if addBias:
+            # insert a column of 1’s as the last entry in the feature matrix(bias)
+            X = np.c_[X, np.ones((X.shape[0]))]
+
+        return self.step(np.dot(X, self.W))
+            
+
+
 
