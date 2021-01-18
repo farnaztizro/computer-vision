@@ -67,6 +67,7 @@ class NeuralNetwork:
             A.append(out)
 
         # BACKPROPAGATION
+
         # the first fase is to compute the difference between our predictions and true target value(error)
         # difference between predicted label A and the ground-truth label y
         error = A[-1] - y
@@ -82,9 +83,52 @@ class NeuralNetwork:
             delta = delta * self.sigmoid_deriv(A[layer])
             D.append(delta)
 
-
-        # weight update phase
+        # since looped over our layers in reverse order we need to reverse deltas
+        # tartibe vorudi haye d baraks
+        D = D[::-1]
        
+        # WEIGHT UPDATE PHASE
+
+        for layer in np.arange(0, len(self.W)):
+
+           # updating weight matrix(actual learning)=gradien descent 
+           self.W[layer] += -self.alpha * A[layer].T.dot(D[layer])
+
+    
+    ## make prediction on testing set after network train on a given dataset
+
+    # X:the data points we'll be predicting class labels for
+    # addBias:e need to add a column of 1’s to X to perform the bias trick
+    def predict(self, X, addBias=True):
+        
+        # initialize p
+        p = np.atleast_2d(X)
+
+        if addBias:
+            # insert a column of 1's as the last entry in feature matrix
+            p = np.c_[p, np.ones((p.shape[0]))]
+
+        for layer in np.arange(0, len(self.W)):
+            
+            '''compute the output prediction by taking dot product
+             between the current activation value p and wheight matrix
+             then passing the value through the nonlinear activation func'''
+            p = self.sigmoid(np.dot(p, self.W[layer]))
+
+        # return the predicted value
+        return p
+
+    # calculate loss
+    def calculate_loss(self, X, targets):
+
+        # make prediction for the input data point then compute the loss
+        targets = np.atleast_2d(targets)
+        predictions = self.predict(X, addBias=False)
+        loss = 0.5 * np.sum((predictions - targets) ** 2)
+
+        return loss
+
+
 
 
 

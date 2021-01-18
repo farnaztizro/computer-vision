@@ -16,3 +16,4 @@ for (x, target) in zip(X, y):
 
     pred = p.predict(x)
     print("[INFO] data={}, ground-truth={}, pred={}".format(x, target[0], pred))
+    
