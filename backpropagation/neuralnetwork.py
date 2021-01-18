@@ -123,6 +123,7 @@ class NeuralNetwork:
 
         # make prediction for the input data point then compute the loss
         targets = np.atleast_2d(targets)
+        # make prediction on x
         predictions = self.predict(X, addBias=False)
         loss = 0.5 * np.sum((predictions - targets) ** 2)
 
