@@ -57,7 +57,7 @@ class NeuralNetwork:
 
         ### forward propagation phase
         # FEEDFORWARD:
-        for layer in np.range(0, len(self.W)):
+        for layer in np.arange(0, len(self.W)):
 
             net = A[layer].dot(self.W[layer])
             # compute the net output applying nonlinear activation function
