@@ -55,3 +55,36 @@ sharpen = np.array((
         [-1, 5, -1],
         [0, -1, 0]), dtype="int")
         
+# Laplacian kernel used to detect edge-like regions
+laplacian = np.array((
+        [0, 1, 0],
+        [1, -4, 1],
+        [0, 1, 0]), dtype="int")
+
+# The Sobel kernels to detect edge-like regions along both the x and y axis
+sobelX = np.array((
+    [-1, 0, 1],
+    [-2, 0, 2],
+    [-1, 0, 1]), dtype="int")
+
+sobelY = np.array((
+    [-1, -2, -1],
+    [0, 0, 0],
+    [1, 2, 1]), dtype="int")
+
+# construct an emboss kernel
+emboss = np.array((
+    [-2, -1, 2],
+    [-1, 1, 1],
+    [0, 1, 2]), dtype="int")
+
+# construct the kernel bank, a list of kernels we’re going to apply
+# using both our custom ‘convole‘ function and OpenCV’s ‘filter2D‘ function
+kernelbank = (
+    ("small_blur", smallBlur),
+    ("large_blur", largeBlur),
+    ("sharpen", sharpen),
+    ("laplacian", laplacian),
+    ("sobel_x", sobelX),
+    ("sobel_y", sobelY),
+    ("emboss", emboss))
