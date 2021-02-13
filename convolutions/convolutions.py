@@ -88,3 +88,23 @@ kernelbank = (
     ("sobel_x", sobelX),
     ("sobel_y", sobelY),
     ("emboss", emboss))
+
+# load the input image and convert it to grayscale
+image = cv2.imread(args["image"])
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# loop over the kernels
+for (kernelName, K) in kernelbank:
+    # apply the kernel to the grayscale image
+    # using both ‘convolve‘ function and OpenCV’s ‘filter2D‘ function
+    print("[INFO] applying {} kernel".format(kernelName))
+    convolveOutput = convolve(gray, K)
+    opencvOutput = cv2.filter2D(gray, -1, K)
+
+    # show the output images
+    cv2.imshow("Original", gray)
+    cv2.imshow("{} - convolve".format(kernelName), convolveOutput)
+    cv2.imshow("{} - opencv".format(kernelName), opencvOutput)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    
